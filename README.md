@@ -1,125 +1,80 @@
-网易云信即时通讯 IM Elite SDK，为 web sdk 的下一代版本，提供完善的即时通信功能开发框架，屏蔽其内部复杂细节，对外提供较为简洁的 API 接口，方便第三方应用快速集成即时通信功能。
+Web大白页示例代码
 
-IM Elite SDK 分为 V1 和 V2 两个版本。V2 对 V1 的 API 接口做了大幅调整，并与其它客户端对齐。其中 V1 版本号 < 1，V2 版本号 >= 10。
+## 启动
 
-## 安装
+前提条件, 确保您的开发环境已安装：
 
-如果你是新用户，推荐使用 V2 API 的SDK，安装方式为:
+- Node.js（建议版本 16 或更高）
+- npm 或 yarn 包管理器
 
-```
-npm install nim-web-sdk-ng@">=10"
-```
-
-如果你是现有 V1 增强版用户，可使用下面命令安装 SDK。或者使用固定版本号安装
+安装依赖
 
 ```
-npm install nim-web-sdk-ng@"<1"
+npm install
 ```
 
-## IM V2
-
-### sdk 选择
-
-sdk 默认提供以下几种形式。其中 sdk 默认入口为 dist/v2/NIM_BROWSER_SDK.js。
-注意，v2 暂未提供 QCHAT SDK。v2 IM SDK 接口兼容 v1 IM SDK。所以 v1 文件夹中没有构建 IM SDK。
+运行
 
 ```
-dist/
-  |── v2
-    ├── NIM_BROWSER_SDK.js       v2 IM 浏览器适配版 UMD 格式
-    ├── NIM_MINIAPP_SDK.js       v2 IM 小程序适配版 UMD 格式
-    ├── NIM_UNIAPP_SDK.js        v2 IM UNIAPP 适配版 UMD 格式
-    ├── CHATROOM_BROWSER_SDK.js  v2 聊天室浏览器适配版 UMD 格式
-    ├── CHATROOM_MINIAPP_SDK.js  v2 聊天室小程序适配版 UMD 格式
-    ├── CHATROOM_UNIAPP_SDK.js   v2 聊天室 UNIAPP 适配版 UMD 格式
-  |── v1
-    ├── CHATROOM_BROWSER_SDK.js  v1 聊天室浏览器适配版 UMD 格式
-    ├── CHATROOM_MINIAPP_SDK.js  v1 聊天室小程序适配版 UMD 格式
-    ├── CHATROOM_UNIAPP_SDK.js   v1 聊天室 UNIAPP 适配版 UMD 格式
-    ├── QCHAT_BROWSER_SDK.js     v1 圈组浏览器适配版 UMD 格式
-    ├── QCHAT_UNIAPP_SDK.js      v1 圈组浏览器适配版 UMD 格式
+npm run dev
 ```
 
-#### 基础引入例子
+这将启动 Vite 开发服务器，通常会在 http://localhost:9141 或其他可用端口运行。
 
-```js
-// 若使用 IM 能力则引入
-import NIM from 'nim-web-sdk-ng'
-// 等效于
-import NIM from 'nim-web-sdk-ng/dist/v2/NIM_BROWSER_SDK'
+## 使用说明
 
-// 0.11.0 版开始支持单例模式获取实例, 在此之前通过 new 创建实例
-const nim = NIM.getInstance(
-  {
-    "appkey": "YOUR_APPKEY",
-    "debugLevel": "debug",
-    "apiVersion": "v2"
-  },
-  {}
-)
+NIM 即时通讯：提供完整的即时通讯功能测试，包括: 登录、消息、会话、用户、好友、群管理
 
-nim.V2NIMLoginService.on('onLoginStatus', function(arg1) {
-  console.log('收到 V2NIMLoginService 模块的 onLoginStatus 事件', arg1)
-})
+启动后，按步骤执行以下流程
 
-async function init() {
-  try {
-    await nim.V2NIMLoginService.login("YOUR_ACCOUNT", "YOUR_TOKEN", {
-      "authType": 0
-    })
-  } catch (err) {
-    console.error('login failed cause', err)
-  }
-}
+1. 初始化 SDK：首先需要在"初始化"页面配置和初始化 NIM SDK
 
-init()
-```
+![](./public/initialize.png)
 
-## IM V1
+2. 登录：完成初始化后，使用"登录"功能进行用户认证
 
-### sdk 选择
+![](./public/login.png)
 
-sdk 默认提供以下几种形式
+3. 功能测试：登录成功后，就可以测试各种 NIM SDK 的功能模块
+
+![](./public/show.png)
+
+4. 复制调用语句代码
+
+![](./public/output.png)
+
+这个项目设计为开发者友好的测试工具，通过可视化界面可以快速验证 NIM Web SDK 的各项功能，无需编写复杂的测试代码。
+
+当然对于某些复杂的流程, 开发者也可以通过路由结构找到对应的 tsx 源码阅读调用过程.
+
+如 http://localhost:9141/apis/V2NIMTeamService/kickMember 就对应代码 src/pages/APIs/V2NIMTeamService/KickMember.tsx 中的代码
+
+## 项目结构
+
+API 相关的文件分布如下
 
 ```
-dist/
-├── CHATROOM_BROWSER_SDK.js  聊天室浏览器适配版 UMD 格式
-├── CHATROOM_MINIAPP_SDK.js  聊天室小程序适配版 UMD 格式
-├── CHATROOM_UNIAPP_SDK.js   聊天室 UNIAPP 适配版 UMD 格式
-├── NIM_BROWSER_SDK.js       IM 浏览器适配版 UMD 格式
-├── NIM_MINIAPP_SDK.js       IM 小程序适配版 UMD 格式
-├── NIM_UNIAPP_SDK.js        IM UNIAPP 适配版 UMD 格式
-├── QCHAT_BROWSER_SDK.js     圈组浏览器适配版 UMD 格式
+% tree src
+src
+├── App.tsx  app 入口
+├── components 公用组件
+│   ├── APIForm 兜底 API 表单
+│   ├── APILayout API 基础布局
+│   ├── NIMInitForm 初始化表单
+├── configs
+│   ├── apiMenu.tsx  API 菜单配置
+├── main.tsx  react 项目入口文件
+├── pages
+│   ├── APIs
+│   │   ├── index.tsx  API 入口
+│   │   ├── route.tsx  API 路由配置
+│   │   ├── V2NIMFriendService 好友功能模块文件夹
+│   │   ├── V2NIMLocalConversationService 会话功能模块文件夹
+│   │   ├── V2NIMLoginService 登录功能模块文件夹
+│   │   ├── V2NIMMessageService 消息功能模块文件夹
+│   │   ├── V2NIMNotificationService 通知功能模块文件夹
+│   │   ├── V2NIMTeamService 群功能模块文件夹
+│   │   └── V2NIMUserService 用户功能模块文件夹
 ```
 
-#### 基础引入例子
-
-```js
-// 若使用 IM 能力则引入
-import NIM from 'nim-web-sdk-ng'
-// 等效于
-import NIM from 'nim-web-sdk-ng/dist/NIM_BROWSER_SDK'
-
-// 0.11.0 版开始支持单例模式获取实例, 在此之前通过 new 创建实例
-const nim = NIM.getInstance(
-  {
-    debugLevel: 'debug',
-    appkey: 'YOUR_APPKEY',
-    account: 'YOUR_ACCOUNT',
-    token: 'YOUR_TOKEN'
-  },
-  {}
-)
-
-async function init() {
-  try {
-    if (nim.status === 'unconnected' || nim.status === 'waitReconnect') {
-      await nim.connect()
-    }
-  } catch (err) {
-    console.error('login failed cause', err)
-  }
-}
-
-init()
-```
+而场景示例功能, 敬请期待, 暂不介绍.
