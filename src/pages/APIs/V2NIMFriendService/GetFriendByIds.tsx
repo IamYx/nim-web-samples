@@ -1,5 +1,5 @@
-import { Button, Card, Form, Input, Space, Table, Tag, message } from 'antd';
-import { V2NIMFriend } from 'nim-web-sdk-ng/dist/v2/NIM_BROWSER_SDK/V2NIMFriendService';
+import { Button, Card, Form, Input, Space, Tag, message } from 'antd';
+//import { V2NIMFriend } from 'nim-web-sdk-ng/dist/v2/NIM_BROWSER_SDK/V2NIMFriendService';
 import { useState } from 'react';
 
 import { to } from '@/utils/errorHandle';

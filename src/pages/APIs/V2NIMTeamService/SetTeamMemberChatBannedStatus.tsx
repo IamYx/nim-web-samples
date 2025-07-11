@@ -333,10 +333,10 @@ const SetTeamMemberChatBannedStatusPage = () => {
   };
 
   // 群组类型选项
-  const teamTypeOptions = [
-    { label: '高级群', value: 1 },
-    { label: '超大群', value: 2 },
-  ];
+  // const teamTypeOptions = [
+  //   { label: '高级群', value: 1 },
+  //   { label: '超大群', value: 2 },
+  // ];
 
   // 获取群组类型显示文本
   const getTeamTypeText = (teamType: number) => {

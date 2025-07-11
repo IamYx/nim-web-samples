@@ -1,6 +1,6 @@
 import { Layout, Menu, Typography } from 'antd';
 import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { apiMenuItems } from '../../configs/apiMenu';
 
