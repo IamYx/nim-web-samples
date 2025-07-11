@@ -8,7 +8,7 @@ import { defineConfig } from 'vite';
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/YuanChat/', // 这里设置publicPath
+  base: '/nim-web-samples/', // 这里设置publicPath
   plugins: [
     react(),
     mdx({
